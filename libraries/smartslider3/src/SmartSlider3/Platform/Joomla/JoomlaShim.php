@@ -119,11 +119,14 @@ class JoomlaShim {
                         }
                     } else {
 
-                        $fn = new ReflectionFunction($listener);
+                        $fn        = new ReflectionFunction($listener);
+                        $fnClosure = $fn->getClosureThis();
 
-                        $className = strtolower(get_class($fn->getClosureThis()));
-                        if (in_array($className, $classNames)) {
-                            $pluginsToRun[] = $listener;
+                        if (is_object($fnClosure)) {
+                            $className = strtolower(get_class($fnClosure));
+                            if (in_array($className, $classNames)) {
+                                $pluginsToRun[] = $listener;
+                            }
                         }
                     }
                 }
@@ -182,10 +185,13 @@ class JoomlaShim {
                     $classNames[$className] = $className;
                 }
             } else {
-                $fn = new ReflectionFunction($listener);
+                $fn        = new ReflectionFunction($listener);
+                $fnClosure = $fn->getClosureThis();
 
-                $className              = strtolower(get_class($fn->getClosureThis()));
-                $classNames[$className] = $className;
+                if (is_object($fnClosure)) {
+                    $className              = strtolower(get_class($fnClosure));
+                    $classNames[$className] = $className;
+                }
             }
         }
 

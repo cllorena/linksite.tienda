@@ -130,5 +130,6 @@ class SliderDeveloper extends AbstractSliderTab {
             'height' => 26,
             'resize' => 'both'
         ));
+
     }
 }
