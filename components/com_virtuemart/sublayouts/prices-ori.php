@@ -27,18 +27,10 @@ $currency = $viewData['currency'];
 		//echo '<div class="vm-cart-price">' . vmText::_ ('COM_VIRTUEMART_CART_PRICE') . '</div>';
 	}
 
-	// este if es el original->   if ($product->prices['salesPrice']<=0 and VmConfig::get ('askprice', 1) and isset($product->images[0]) and !$product->images[0]->file_is_downloadable) {
-	if ($product->prices['salesPrice']>=0) {
+	if ($product->prices['salesPrice']<=0 and VmConfig::get ('askprice', 1) and isset($product->images[0]) and !$product->images[0]->file_is_downloadable) {
 		$askquestion_url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&task=askquestion&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id . '&tmpl=component', FALSE);
 		?>
-		<!-- La linea que sigue la agregue -->
-		<b style="font-size: x-large;"><?php echo $currency->createPriceDiv ('salesPrice', 'COM_VIRTUEMART_PRODUCT_SALESPRICE', $product->prices);?></b>
-		<br>
-		<!-- Esta es la linea Original
-	    <a class="ask-a-question bold" href="<?php // echo $askquestion_url ?>" rel="nofollow" ><?php //echo vmText::_ ('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
-		-->
-		<a class="ask-a-question bold" href="<?php echo $askquestion_url ?>" rel="nofollow" ><?php echo vmText::_ ('COM_VIRTUEMART_PRODUCT_PRECIO') ?></a>
-		
+		<a class="ask-a-question bold" href="<?php echo $askquestion_url ?>" rel="nofollow" ><?php echo vmText::_ ('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
 		<?php
 	} else {
 	//if ($showBasePrice) {

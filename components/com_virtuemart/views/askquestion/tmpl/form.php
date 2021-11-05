@@ -60,15 +60,24 @@ if (empty ( $this->product )) {
 
 		?>
 		<div class="ask-a-question-view">
-			<h1><?php echo vmText::_('COM_VIRTUEMART_PRODUCT_ASK_QUESTION') ?></h1>
+			<h1><?php // echo vmText::_('COM_VIRTUEMART_PRODUCT_ASK_QUESTION') ?></h1><br>
+			<h1><?php echo vmText::_('COM_VIRTUEMART_PRODUCT_ASK_PREGUNTA') ?></h1><br>
+			<!--<div style="width: 100%;">
+			<div style="float:left;width: 22%;">
+				<img src="images/JuniorFoto.png" width="70%" height="70%" />
+			</div>
+			<div style="float:right;width: 78%; text-align: left;">
+					<h1><b style="font-size: small;">Claudia LLorena<br>Enfermera Universitaria</b></h1>
+			</div>
+			</div><br><br><br>-->
 			<div class="product-summary">
 				<div class="width70 floatleft">
-					<h2><?php echo $this->product->product_name ?></h2>
+					<h2><b><?php echo $this->product->product_name ?></b></h2>
 
 					<?php // Product Short Description
 					if (!empty($this->product->product_s_desc)) { ?>
 						<div class="short-description">
-							<?php echo $this->product->product_s_desc ?>
+							<h2 style="font-size: small;"><?php echo $this->product->product_s_desc ?></h2>
 						</div>
 					<?php } // Product Short Description END ?>
 				</div>
