@@ -62,7 +62,7 @@ defined('_JEXEC') or die('');
 										<?php
 										$menuItemID = shopFunctionsF::getMenuItemId(vmLanguage::getLanguage()->getTag());
 										$product_link = JURI::root().'index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->virtuemart_product_id . '&Itemid=' . $menuItemID;
-										$imagen = $this->product->images[0];
+										$imagen = $this->product->images[0]->displayMediaThumb('',false,'',true,false,true);
 										?>
 										<td width="30%" align="center">
 											<a href="<?php  echo $product_link ?>">
