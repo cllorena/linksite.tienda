@@ -64,8 +64,8 @@ defined('_JEXEC') or die('');
 										$product_link = JURI::root().'index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->virtuemart_product_id . '&Itemid=' . $menuItemID;
 										?>
 										<td width="30%" align="center">
-											<a href="<?php  echo $product_link ?>
-											<img style="width: 60%;" src="<?php echo $this->product->images[0]->displayMediaThumb('',false,'',true,false,true); ?>" >
+											<a href="<?php  echo $product_link ?>">
+											<img style="width: 60%;" src="<?php echo $this->product->images[0]->displayMediaThumb('',false,'',true,false,true); ?>">
 											</a>
 										</td>
 										<td width="70%" valign="top">
