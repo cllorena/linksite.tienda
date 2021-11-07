@@ -61,12 +61,13 @@ defined('_JEXEC') or die('');
 									<tr>
 										<?php
 										$menuItemID = shopFunctionsF::getMenuItemId(vmLanguage::getLanguage()->getTag());
-										$product_link = JURI::root().'index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->virtuemart_product_id . '&Itemid=' . $menuItemID;
+										//$product_link = JURI::root().'index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->virtuemart_product_id . '&Itemid=' . $menuItemID;
+										$product_link = JURI::root().'index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->virtuemart_product_id;
 										?>
 										<td width="30%" align="center">
 											<a href="<?php  echo $product_link ?>">
 											<?php //echo $this->product->images[0]->displayMediaThumb('',false,'',true,false,true); ?>
-											<?php echo $this->product->images[0]->displayMediaThumb('style="width: 50%;" ',false,'',true,false,true); ?>
+											<?php echo $this->product->images[0]->displayMediaThumb('style="width: 60%;" ',false,'',true,false,true); ?>
 											</a>
 										</td>
 										<td width="70%" valign="top">
