@@ -14,6 +14,7 @@ defined('_JEXEC') or die('');
  * other free or open source software licenses.
  * @version $Id: mail_html_question.php 9927 2018-09-10 STS $
  */
+
 ?>
 
 <html>
@@ -91,3 +92,8 @@ defined('_JEXEC') or die('');
 	</div>
 	</body>
 </html>
+
+<?php 
+
+
+?>

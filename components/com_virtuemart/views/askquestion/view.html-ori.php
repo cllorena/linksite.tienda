@@ -181,9 +181,6 @@ class VirtueMartViewAskquestion extends VmView {
 		$this->setLayout ($tpl);
 		$this->isMail = true;
 		parent::display ();
-
-
-		
 	}
 
 	public function showLastCategory ($tpl) {
