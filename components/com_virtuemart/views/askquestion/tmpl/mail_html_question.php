@@ -67,7 +67,7 @@ defined('_JEXEC') or die('');
 										?>
 										<td width="30%" align="center">
 											<a href="<?php  echo $product_link ?>">
-											<?php //echo $this->product->images[0]->displayMediaThumb('',false,'',true,false,true); ?>
+											<?php  //echo $this->product->images[0]->displayMediaThumb('',false,'',true,false,true); ?>
 											<?php echo $this->product->images[0]->displayMediaThumb('style="width: 60%;" ',false,'',true,false,true); ?>
 											</a>
 										</td>
