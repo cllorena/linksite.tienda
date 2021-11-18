@@ -36,8 +36,8 @@ class JConfig {
 	public $fromname = 'LInksite Market';
 	public $sendmail = '/usr/sbin/sendmail';
 	public $smtpauth = '1';
-	public $smtpuser = 'claudio.llorena@gmail.com';
-	public $smtppass = '01066319c';
+	public $smtpuser = 'info';
+	public $smtppass = '01066319cC_';
 	public $smtphost = 'localhost';
 	public $smtpsecure = 'ssl';
 	public $smtpport = '465';
