@@ -31,7 +31,7 @@ class JConfig {
 	public $ftp_enable = '0';
 	public $offset = 'UTC';
 	public $mailonline = '1';
-	public $mailer = 'smtp';
+	public $mailer = 'mail';
 	public $mailfrom = 'claudio.llorena@gmail.com';
 	public $fromname = 'LInksite Market';
 	public $sendmail = '/usr/sbin/sendmail';
