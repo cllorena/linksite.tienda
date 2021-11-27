@@ -41,11 +41,6 @@ class Font
         $app = \JFactory::getApplication();
         $fonts = Helper::getJSONData('webfonts');
         $options = [];
-
-        if (!isset($fonts['items'])) {
-            return $options;
-        }
-
         foreach ($fonts['items'] as $font) {
             $variants = [];
             if (count($font['variants']) > 1) {
@@ -202,30 +197,7 @@ class Font
     public static function loadGoogleFont($value)
     {
         $document = Framework::getDocument();
-
-        $value = str_replace(',', ';', $value);
-        $value = str_replace(':', ':ital,wght@', $value);
-
-        $wght = substr($value, strpos($value, "@") + 1);
-
-        $_value = explode(';', $wght);
-        foreach ($_value as &$_v) {
-            $_v = explode('i', $_v);
-            if (count($_v) == 2) {
-                $_v = '1,' . $_v[0];
-            } else {
-                $_v = '0,' . $_v[0];
-            }
-        }
-        sort($_value);
-
-        if (strpos($value, "@") > 0) {
-            $value = str_replace($wght, implode(';', $_value), $value);
-        }
-
-        $document->addCustomTag('<link rel="preconnect" href="https://fonts.gstatic.com">');
-        $document->addStyleSheet('https://fonts.googleapis.com/css2?family=' . $value . '&display=swap');
-
+        $document->addStyleSheet('https://fonts.googleapis.com/css?family=' . $value);
         @list($font, $variants) = explode(":", $value);
 
         if (preg_match('~[0-9]+~', $font)) {
@@ -257,7 +229,7 @@ class Font
 
         switch ($source) {
             case 'cdn':
-                Framework::getDocument()->addStyleSheet("https://use.fontawesome.com/releases/v" . Helper\Constants::$fontawesome_version . "/css/all.css", ['data-version' => Helper\Constants::$fontawesome_version]);
+                Framework::getDocument()->addStyleSheet("https://use.fontawesome.com/releases/v" . Helper\Constants::$fontawesome_version . "/css/all.css", ['version' => Helper\Constants::$fontawesome_version]);
                 break;
             case 'local':
                 Framework::getDocument()->addStyleSheet("vendor/fontawesome/css/all.min.css", ['version' => Helper\Constants::$fontawesome_version]);

@@ -24,7 +24,7 @@ class BaseElement
     {
         $this->_data = $data;
         $this->id = $data['id'];
-        $this->type = isset($data['type']) ? $data['type'] : 'element';
+        $this->type = $data['type'];
         $this->params = new \JRegistry();
         if (isset($data['params']) && !empty($data['params'])) {
             $params = [];

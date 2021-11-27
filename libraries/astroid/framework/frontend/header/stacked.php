@@ -46,7 +46,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             <?php if (!empty($header_mobile_menu)) { ?>
                <div class="d-flex d-lg-none justify-content-start">
                   <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                     <button class="button" aria-label="Mobile Menu Toggle" type="button"><span class="box"><span class="inner"></span></span></button>
+                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
                   </div>
                </div>
             <?php } ?>
@@ -58,7 +58,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             if ($enable_offcanvas) {
             ?>
                <div class="d-flex justify-content-end">
-                  <?php $document->include('offcanvas.trigger', ['offcanvas' => '#astroid-offcanvas', 'visibility' => $offcanvas_togglevisibility, 'effect' => $offcanvas_animation, 'direction' => $offcanvas_direction]); ?>
+                  <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>">
+                     <button type="button" class="button">
+                        <span class="box">
+                           <span class="inner"></span>
+                        </span>
+                     </button>
+                  </div>
                </div>
             <?php
             }
@@ -104,7 +110,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                <?php if (!empty($header_mobile_menu)) { ?>
                   <div class="d-flex d-lg-none justify-content-start">
                      <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                        <button class="button" aria-label="Mobile Menu Toggle" type="button"><span class="box"><span class="inner"></span></span></button>
+                        <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
                      </div>
                   </div>
                <?php
@@ -119,7 +125,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
                if ($enable_offcanvas) {
                ?>
                   <div class="d-flex justify-content-end">
-                     <?php $document->include('offcanvas.trigger', ['offcanvas' => '#astroid-offcanvas', 'visibility' => $offcanvas_togglevisibility, 'effect' => $offcanvas_animation, 'direction' => $offcanvas_direction]); ?>
+                     <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>">
+                        <button type="button" class="button">
+                           <span class="box">
+                              <span class="inner"></span>
+                           </span>
+                        </button>
+                     </div>
                   </div>
                <?php
                }
@@ -146,7 +158,7 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             <?php if (!empty($header_mobile_menu)) { ?>
                <div class="d-flex d-lg-none justify-content-start">
                   <div class="header-mobilemenu-trigger d-lg-none burger-menu-button align-self-center" data-offcanvas="#astroid-mobilemenu" data-effect="mobilemenu-slide">
-                     <button class="button" aria-label="Mobile Menu Toggle" type="button"><span class="box"><span class="inner"></span></span></button>
+                     <button class="button" type="button"><span class="box"><span class="inner"></span></span></button>
                   </div>
                </div>
             <?php
@@ -175,7 +187,13 @@ $navWrapperClass = ['astroid-nav-wraper', 'align-self-center', 'px-2', 'd-none',
             if ($enable_offcanvas) {
             ?>
                <div class="d-flex justify-content-end">
-                  <?php $document->include('offcanvas.trigger', ['offcanvas' => '#astroid-offcanvas', 'visibility' => $offcanvas_togglevisibility, 'effect' => $offcanvas_animation, 'direction' => $offcanvas_direction]); ?>
+                  <div class="header-offcanvas-trigger burger-menu-button align-self-center <?php echo $offcanvas_togglevisibility; ?>" data-offcanvas="#astroid-offcanvas" data-effect="<?php echo $offcanvas_animation; ?>" data-direction="<?php echo $offcanvas_direction; ?>">
+                     <button type="button" class="button">
+                        <span class="box">
+                           <span class="inner"></span>
+                        </span>
+                     </button>
+                  </div>
                </div>
             <?php
             }

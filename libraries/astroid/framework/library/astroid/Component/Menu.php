@@ -15,7 +15,7 @@ use Astroid\Framework;
 
 if (ASTROID_JOOMLA_VERSION == 3) {
     \JLoader::register('ModMenuHelper', JPATH_SITE . '/modules/mod_menu/helper.php');
-    \JLoader::registerAlias('MenuHelper', '\\ModMenuHelper');
+    \JLoader::registerAlias('MenuHelper', 'ModMenuHelper');
 } else {
     \JLoader::registerAlias('MenuHelper', '\\Joomla\\Module\\Menu\\Site\\Helper\\MenuHelper');
 }
@@ -124,11 +124,7 @@ class Menu
                 // The next item is shallower.
                 elseif ($item->shallower) {
                     echo '</li>';
-                    if ($item->level == 1 && $item->parent) {
-                        echo str_repeat('</ul></div>' . '</li>', $item->level_diff);
-                    } else {
-                        echo str_repeat('</ul>' . '</li>', $item->level_diff);
-                    }
+                    echo str_repeat('</ul>' . '</li>', $item->level_diff);
                 }
                 // The next item is on the same level.
                 else {

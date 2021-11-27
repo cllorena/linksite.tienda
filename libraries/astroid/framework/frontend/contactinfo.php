@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   Astroid Framework
  * @author    JoomDev https://www.joomdev.com
@@ -46,7 +45,7 @@ $contact_display = $params->get('contact_display', 'icons');
          <?php if ($contact_display == "text") : ?>
             <?php echo JText::_('TPL_ASTROID_PHONE_LABEL'); ?>:
          <?php endif; ?>
-         <a href="tel:<?php echo str_replace(' ', '', $phone); ?>"><?php echo $phone; ?></a>
+         <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
       </span>
    <?php } ?>
 
@@ -80,9 +79,9 @@ $contact_display = $params->get('contact_display', 'icons');
             <i class="far fa-clock"></i>
          <?php endif; ?>
          <?php if ($contact_display == "text") : ?>:
-         <?php echo JText::_('TPL_ASTROID_OPENHOURS_LABEL'); ?>
-      <?php endif; ?>
-      <?php echo $openhours; ?>
+            <?php echo JText::_('TPL_ASTROID_OPENHOURS_LABEL'); ?>
+         <?php endif; ?>
+         <?php echo $openhours; ?>
       </span>
    <?php } ?>
 </div>

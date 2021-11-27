@@ -33,7 +33,6 @@ abstract class Framework
         self::$document = new Document(); // Document
 
         self::constants();
-        self::audit();
     }
 
     public static function getVersion()
@@ -125,10 +124,6 @@ abstract class Framework
                 $app->redirect(base64_decode(urldecode($redirect)));
             }
         }
-    }
-
-    public static function audit()
-    {
     }
 
     public static function getClientType()

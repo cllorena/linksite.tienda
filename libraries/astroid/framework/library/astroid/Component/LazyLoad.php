@@ -21,18 +21,14 @@ class LazyLoad
         Framework::getDebugger()->log('Lazy Load');
         $app = \JFactory::getApplication();
         $template = Framework::getTemplate();
-        $document = Framework::getDocument();
         $params = $template->getParams();
         $run = $params->get('lazyload', 0);
-
-        // Stop Lazy Load for RSSFeeds
-        if ($document->getType() == 'feed') $run = false;
-
-        // Stop Lazy Load
-        if (!$run) return;
-
         Helper::createDir(ASTROID_CACHE . '/lazy-load/' . $template->id);
-        $document->addScript('vendor/astroid/js/lazyload.min.js');
+        if (!$run) {
+            return;
+        }
+
+        Framework::getDocument()->addScript('vendor/astroid/js/lazyload.min.js');
 
         if ($params->get('lazyload_components', '')) {
             $run = self::selectedComponents($params->get('lazyload_components', ''), $params->get('lazyload_components_action', 'include'));
@@ -95,7 +91,7 @@ class LazyLoad
                 }
 
                 if (Framework::getDebugger()->debug) {
-                    Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . $document->beutifyURL($matches[1][$key]) . '</code></a>');
+                    Framework::getReporter('Lazy Load Images')->add('<a href="' . $matches[1][$key] . '" target="_blank"><code>' . Framework::getDocument()->beutifyURL($matches[1][$key]) . '</code></a>');
                 }
 
                 if (!isset($imageMap[md5($matches[1][$key])])) {
@@ -126,31 +122,26 @@ class LazyLoad
 
     public static function getBase64Thumbnail($sourceImage)
     {
-        error_reporting(E_ERROR | E_PARSE);
-        try {
-            $info = getimagesize($sourceImage);
-            if (!is_array($info) || !in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {
-                return false;
-            }
-
-            list($origWidth, $origHeight) = $info;
-            $image = imagecreatetruecolor($origWidth, $origHeight);
-
-            imagesavealpha($image, true);
-            $transparent = imagecolorallocatealpha($image, 255, 0, 0, 127);
-            imagefill($image, 0, 0, $transparent);
-
-            ob_start();
-            imagepng($image);
-            $blankImageBuffer = ob_get_clean();
-            if (ob_get_length() > 0) {
-                ob_end_clean();
-            }
-            $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
-            return $blankImage;
-        } catch (\Exception $e) {
+        $info = getimagesize($sourceImage);
+        if (!in_array($info['mime'], ['image/jpeg', 'image/gif', 'image/png'])) {
             return false;
         }
+
+        list($origWidth, $origHeight) = $info;
+        $image = imagecreatetruecolor($origWidth, $origHeight);
+
+        imagesavealpha($image, true);
+        $transparent = imagecolorallocatealpha($image, 255, 0, 0, 127);
+        imagefill($image, 0, 0, $transparent);
+
+        ob_start();
+        imagepng($image);
+        $blankImageBuffer = ob_get_clean();
+        if (ob_get_length() > 0) {
+            ob_end_clean();
+        }
+        $blankImage = 'data:image/png;base64,' . base64_encode($blankImageBuffer);
+        return $blankImage;
     }
 
     public static function selectedImages(&$matches, $images = '', $toggle = '')
@@ -257,29 +248,24 @@ class LazyLoad
     public static function selectedClasses(&$matches, $classes = '', $toggle = '')
     {
         $classes = array_map('trim', explode("\n", $classes));
+
         foreach ($matches[0] as $key => $match) {
-            $classExists = false;
-
             foreach ($classes as $classname) {
-                $exists = preg_match('@class=[\"\'].*' . $classname . '.*[\"\']@Ui', $match);
-                if (!empty($exists)) {
-                    $classExists = true;
-                    break;
-                }
-            }
+                $classExists = preg_match('@class=[\"\'].*' . $classname . '.*[\"\']@Ui', $match);
 
-            if ($toggle == 'include') {
-                if (!$classExists) {
+                if ($toggle == 'include') {
+                    if (empty($classExists)) {
+                        unset($matches[0][$key]);
+                        unset($matches[1][$key]);
+                    }
+
+                    continue;
+                }
+
+                if (!empty($classExists)) {
                     unset($matches[0][$key]);
                     unset($matches[1][$key]);
                 }
-
-                continue;
-            }
-
-            if (!empty($classExists)) {
-                unset($matches[0][$key]);
-                unset($matches[1][$key]);
             }
         }
     }

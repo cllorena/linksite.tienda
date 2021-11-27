@@ -19,7 +19,6 @@ $params = new JRegistry();
 $params->loadString($user->params, 'JSON');
 // Get social profiles
 $socials = $params->get('astroid_author_social', '[]');
-
 if (is_string($socials)) {
    $socials = \json_decode($socials, true);
 } else {
@@ -30,7 +29,6 @@ if (is_string($socials)) {
    }
    $socials = $items;
 }
-
 $hash_email = md5(strtolower(trim($user->email)));
 ?>
 
@@ -56,7 +54,6 @@ $hash_email = md5(strtolower(trim($user->email)));
             <?php if (!empty($socials)) { ?>
                <ul class="author-social-links">
                   <?php foreach ($socials['icon'] as $key => $icon) { ?>
-                     <?php if (empty($socials['link'][$key])) continue; ?>
                      <li class="author-social-link">
                         <a target="_blank" rel="noopener" href="<?php echo $socials['link'][$key]; ?>"><i class="<?php echo $icon; ?> fa-lg"></i></a>
                      </li>
