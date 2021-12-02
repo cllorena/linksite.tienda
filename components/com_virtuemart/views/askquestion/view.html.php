@@ -173,6 +173,41 @@ class VirtueMartViewAskquestion extends VmView {
 		// in this particular case, overwrite the value for fix the recipient name
 		$this->vendor->vendor_name = $this->user->get('name');
 
+
+
+		//CLLA ***************/
+
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		// Insert columns.
+		$columns = array('comment', 'email','name', 'virtuemart_product_id', 'fecha', 'producto');
+
+		// Insert values.
+		//$values = array(0, 0, 1, 0, $db->quote('root'), $db->quote('root'), 1, 1);
+		$preg = vRequest::getString ('comment');
+		$fecha = date('Y-m-d');
+		$prod = vmText::_ ('COM_VIRTUEMART_QUESTION_ABOUT') . $this->product->product_name;
+
+		$values = array($db->quote($preg), $db->quote($fromMail), $db->quote($fromName), $db->quote($virtuemart_product_id), $db->quote($fecha), $db->quote($prod) );
+
+		// Prepare the insert query.
+		$query
+		->insert($db->quoteName('#__aejecutivo'))
+		->columns($db->quoteName($columns))
+		->values(implode(',', $values));
+
+		$db->setQuery($query);
+		$db->execute();
+
+//		return $db->insertid();
+
+		//FIN CLLA***************/
+
+
+
+
+
 		if (VmConfig::get ('order_mail_html')) {
 			$tpl = 'mail_html_question';
 		} else {
